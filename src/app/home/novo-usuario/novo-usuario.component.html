@@ -1,0 +1,39 @@
+<h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4>
+
+<form action="" class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="register()">
+  <div class="mb-3">
+    <input type="email" formControlName="email" placeholder="E-mail" class="form-control">
+    <app-messages
+    *ngIf="novoUsuarioForm.get('email')?.errors?.['required'] && novoUsuarioForm.get('email')?.touched"
+    message="Email obrigatório"
+    ></app-messages>
+    <app-messages
+    *ngIf="novoUsuarioForm.get('email')?.errors?.['email'] && novoUsuarioForm.get('email')?.touched"
+    message="Insira um email válido"
+    ></app-messages>
+  </div>
+  <div class="mb-3">
+    <input type="text" formControlName="fullName" placeholder="Nome Completo" class="form-control">
+    <app-messages
+    *ngIf="novoUsuarioForm.get('fullName')?.errors && novoUsuarioForm.get('fullName')?.touched"
+    message="Caracteres insuficientes"
+    ></app-messages>
+  </div>
+  <div class="mb-3">
+    <input type="text" formControlName="userName" placeholder="Usuário" class="form-control">
+    <app-messages
+    *ngIf="novoUsuarioForm.get('userName')?.errors?.['minusculo'] && novoUsuarioForm.get('userName')?.touched"
+    message="Usuário deve ser em letras minusculas"
+    ></app-messages>
+    <app-messages
+    *ngIf="novoUsuarioForm.get('userName')?.errors?.['userExists'] && novoUsuarioForm.get('userName')?.touched"
+    message="Usuário já existe"
+    ></app-messages>
+  </div>
+  <div class="mb-3">
+    <input type="password" formControlName="password" placeholder="Senha" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+</form>
+
+<p>Já tem uma conta? <a [routerLink]="['']">Faça o seu login</a></p>
